@@ -1,19 +1,23 @@
 <div class="layout layout--col gap--space-between lg:gap--medium portrait:gap--tiny">
   <div class="flex flex--col gap--tiny">
-    <span class="title title--small lg:title--large">{{ menu_short | default: "Pre-K – 8" }} Lunch</span>
+    <span class="title title--small lg:title--large">🍎 {{ menu_short | default: "Pre-K – 8" }} Lunch</span>
     {% if current_day %}
-    <span class="label label--small lg:label--large">{{ current_day.full_date }} • {{ current_day.status_label | default: "TODAY" }}</span>
+    <span class="label label--small lg:label--large">{{ current_day.full_date }} &bull; {{ current_day.status_label | default: "TODAY" }}</span>
     {% endif %}
   </div>
 
   <div class="divider"></div>
 
   {% if current_day %}
-  <div class="flex flex--col gap--tiny">
+  <div class="flex flex--col gap--tiny" style="text-align: left;">
     {% for item in current_day.items limit: 3 %}
-    <span class="value value--small lg:value--base">• {{ item }}</span>
+    <span class="value value--small lg:value--base" style="text-align: left;">• {{ item }}</span>
     {% endfor %}
   </div>
+  {% if tomorrow or next_day_1 %}
+  {% assign next_up = tomorrow | default: next_day_1 %}
+  <span class="label label--gray label--small">Tomorrow: {{ next_up.items | first }}</span>
+  {% endif %}
   {% else %}
   <span class="label label--gray lg:label--base">No menu available</span>
   {% endif %}

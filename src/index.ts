@@ -248,12 +248,14 @@ function formatUpdatedAt(): string {
 export interface DayMenu {
   date: string;
   full_date: string;
+  day_name: string;
   day_short: string;
   status_label: string;
   items: string[];
   summary: string;
   salad_bar: string | null;
   note: string | null;
+  label?: string;
 }
 
 interface ParsedDayMenu extends DayMenu {
@@ -384,6 +386,7 @@ function parseMonthlyCsv(csvText: string, targetIsoDate: string): ParsedDayMenu[
       iso_date: isoDate,
       date: dateFormatted,
       full_date: dayShort ? `${dayShort}, ${dateFormatted}` : dateFormatted,
+      day_name: dayName,
       day_short: dayShort,
       status_label: isToday ? "TODAY'S LUNCH" : "NEXT SCHOOL DAY",
       items: displayItems,
@@ -456,11 +459,22 @@ async function getMenuData(menu: MenuMeta, targetIsoDate: string) {
   const currentDay = upcoming[0] ? toDayMenu(upcoming[0]) : null;
   const nextDays = upcoming.slice(1, 4).map(toDayMenu);
 
+  const rawTomorrow = nextDays[0] ?? null;
+  const tomorrowLabel =
+    currentDay?.day_short === "Fri" ? "MONDAY'S LUNCH" : "TOMORROW'S LUNCH";
+  const tomorrow = rawTomorrow
+    ? {
+        ...rawTomorrow,
+        label: tomorrowLabel,
+      }
+    : null;
+
   return {
     menu_name: menu.name,
     menu_short: menu.shortName,
     school_year: curr.schoolYear,
     current_day: currentDay,
+    tomorrow: tomorrow,
     next_day_1: nextDays[0] ?? null,
     next_day_2: nextDays[1] ?? null,
     next_day_3: nextDays[2] ?? null,
