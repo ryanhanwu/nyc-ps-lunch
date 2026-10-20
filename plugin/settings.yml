@@ -1,0 +1,40 @@
+name: NYC School Lunch Menu
+description: NYC Public Schools daily & upcoming lunch menus
+tagline: NYC Public Schools daily & upcoming lunch menus
+category: Life
+strategy: Polling
+polling_verb: GET
+polling_url: "https://trmnl-nyc-ps-lunch.ryanhanwu.workers.dev/lunch?menu={{ menu_type }}"
+polling_interval: 3600
+
+# The Cloudflare Worker returns a JSON object with these top-level keys:
+# {
+#   "menu_name": "Pre-K - 8 Lunch Menu",
+#   "menu_short": "Pre-K – 8",
+#   "menu_key": "pre-k-8-lunch",
+#   "school_year": "2026-2027",
+#   "current_day": {
+#     "iso_date": "2026-10-20",
+#     "date": "Oct 20",
+#     "full_date": "Tue, Oct 20",
+#     "day_name": "Tuesday",
+#     "day_short": "Tue",
+#     "is_today": true,
+#     "status_label": "TODAY'S LUNCH",
+#     "items": [
+#       "Chicken Tenders with Dipping Sauce",
+#       "Fish Sticks with Tartar Sauce",
+#       "Garlic Knot (V)",
+#       "Parmesan Carrot Sticks (V)"
+#     ],
+#     "summary": "Chicken Tenders with Dipping Sauce • Fish Sticks with Tartar Sauce • Garlic Knot (V) • Parmesan Carrot Sticks (V)",
+#     "salad_bar": "Leafy Green Bar",
+#     "note": null
+#   },
+#   "next_day_1": { ... },
+#   "next_day_2": { ... },
+#   "next_day_3": { ... },
+#   "next_days": [ ... ],
+#   "no_menu": false,
+#   "updated_at": "Oct 20, 6:25 PM"
+# }
