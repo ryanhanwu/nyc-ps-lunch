@@ -1,0 +1,44 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: latest
+serverless_language: ''
+refresh_interval_floor: '60'
+polling_url: https://trmnl-nyc-ps-lunch.ryanhanwu.workers.dev/lunch?menu={{ menu_type }}
+polling_headers: ''
+polling_body: ''
+id: 513790
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+custom_fields:
+- keyname: menu_type
+  field_type: select
+  name: School Lunch Menu
+  description: Select the NYC Public Schools lunch menu to display
+  default: Pre-K - 8 Lunch Menu
+  options:
+  - Pre-K - 8 Lunch Menu
+  - Pre-K - 8 Lunch Menu With Halal Option
+  - Pre-K - 8 Vegetarian Lunch Menu
+  - Pre-K - 8 Express Hot Lunch Menu
+  - Pre-K - 8 Express Hot Lunch Menu With Halal Option
+  - Pre-K - 8 Express Cold Lunch Menu
+  - Pre-K - 8 Express Cold Lunch Menu With Halal Option
+  - High School Lunch Menu
+  - High School Lunch Menu With Halal Option
+  - High School Express Hot Lunch Menu
+  - High School Express Hot Lunch Menu With Halal Option
+  - High School Express Cold Lunch Menu
+  - Food Court Menu
+  - Food Court Menu With Halal Option
+  - Infant Toddler Lunch Menu
+- keyname: author_bio
+  field_type: author_bio
+  name: About This Plugin
+  description: Displays NYC Public Schools daily lunch menu and upcoming school days directly from the NYC Department of Education.
+name: NYC Public School Lunch
+description: ''
+refresh_interval: 60
