@@ -1,0 +1,33 @@
+<div class="layout layout--col gap--space-between lg:gap--large portrait:gap--tiny">
+  <div class="flex flex--between flex--center-y">
+    <span class="title title--medium lg:title--xlarge">{{ menu_name | default: "Pre-K - 8 Lunch Menu" }}</span>
+    {% if current_day %}
+    <span class="label label--filled lg:label--base">{{ current_day.full_date }}</span>
+    {% endif %}
+  </div>
+  <div class="divider"></div>
+  {% if current_day %}
+  <div class="flex gap--xlarge portrait:gap--medium lg:w--full">
+    <div class="flex flex--col gap--tiny">
+      <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY'S LUNCH" }}</span>
+      {% for item in current_day.items limit: 3 %}
+      <span class="value value--small lg:value--large">• {{ item }}</span>
+      {% endfor %}
+    </div>
+    {% if next_day_1 %}
+    <div class="flex flex--col gap--tiny">
+      <span class="label label--underline lg:label--base">NEXT ({{ next_day_1.full_date }})</span>
+      {% for item in next_day_1.items limit: 3 %}
+      <span class="value value--small lg:value--large">• {{ item }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% else %}
+  <span class="label label--gray lg:label--base">No school lunch menu available.</span>
+  {% endif %}
+</div>
+<div class="title_bar">
+  <span class="title">{{ menu_name | default: "NYC School Lunch" }}</span>
+  <span class="instance">NYC PS</span>
+</div>

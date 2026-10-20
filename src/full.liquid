@@ -1,0 +1,88 @@
+<div class="layout layout--col gap--space-between lg:gap--xlarge portrait:gap--small">
+
+  <!-- Header: Menu Title & Dietary Legend -->
+  <div class="flex flex--col gap--tiny">
+    <div class="flex flex--between flex--center-y">
+      <span class="title title--large lg:title--xxlarge">{{ menu_name | default: "Pre-K - 8 Lunch Menu" }}</span>
+      <span class="hidden lg:inline label label--large label--gray">NYC Public Schools ({{ school_year | default: "2026-2027" }})</span>
+    </div>
+    <span class="label label--small lg:label--base label--underline">
+      NYC Public Schools &nbsp;•&nbsp; (V) Vegetarian &nbsp;•&nbsp; (VE) Vegan &nbsp;•&nbsp; (H) Halal
+    </span>
+  </div>
+
+  {% if no_menu or current_day == nil %}
+  <div class="flex flex--col gap--small">
+    <span class="label label--gray lg:label--base">No school lunch menu available for this period.</span>
+  </div>
+  {% else %}
+
+  <!-- Current / Next School Day Highlight -->
+  <div class="flex flex--col gap--small lg:gap--medium">
+    <div class="flex flex--between flex--center-y portrait:flex--wrap">
+      <div class="flex flex--center-y gap--small lg:gap--medium">
+        <span class="label label--filled lg:label--large">{{ current_day.status_label | default: "TODAY'S LUNCH" }}</span>
+        <span class="value value--medium lg:value--large">{{ current_day.full_date | default: "" }}</span>
+      </div>
+      <div class="flex flex--center-y gap--small">
+        {% if current_day.note %}
+        <span class="label label--small lg:label--base label--underline">{{ current_day.note }}</span>
+        {% endif %}
+        {% if current_day.salad_bar %}
+        <span class="label label--small lg:label--base label--gray">{{ current_day.salad_bar }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="flex flex--col gap--tiny lg:gap--small">
+      {% for item in current_day.items %}
+      <span class="value lg:value--large">• {{ item }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Upcoming School Days -->
+  <div class="flex flex--col gap--small lg:gap--medium portrait:gap--tiny">
+    <span class="label label--underline lg:label--base">UPCOMING DAYS</span>
+
+    {% if next_day_1 == nil %}
+      <span class="label label--gray lg:label--base">No additional upcoming days published yet.</span>
+    {% else %}
+
+      {% if next_day_1 %}
+      <div class="flex flex--between flex--center-y gap--medium">
+        <span class="label label--small lg:label--base"><strong>{{ next_day_1.full_date }}</strong></span>
+        <span class="value value--small lg:value--base">{{ next_day_1.summary }}</span>
+      </div>
+      {% endif %}
+
+      {% if next_day_2 %}
+      <div class="flex flex--between flex--center-y gap--medium">
+        <span class="label label--small lg:label--base"><strong>{{ next_day_2.full_date }}</strong></span>
+        <span class="value value--small lg:value--base">{{ next_day_2.summary }}</span>
+      </div>
+      {% endif %}
+
+      {% if next_day_3 %}
+      <div class="flex flex--between flex--center-y gap--medium">
+        <span class="label label--small lg:label--base"><strong>{{ next_day_3.full_date }}</strong></span>
+        <span class="value value--small lg:value--base">{{ next_day_3.summary }}</span>
+      </div>
+      {% endif %}
+
+    {% endif %}
+  </div>
+
+  {% endif %}
+
+  <!-- Footer: last updated -->
+  <div class="label label--small lg:label--base label--gray">Updated {{ updated_at | default: "Recently" }}</div>
+
+</div>
+
+<div class="title_bar">
+  <span class="title">{{ menu_name | default: "NYC School Lunch" }}</span>
+  <span class="instance">NYC PS</span>
+</div>
