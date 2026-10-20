@@ -1,8 +1,8 @@
 # 🍎 TRMNL NYC School Lunch Plugin
 
-A [TRMNL](https://usetrmnl.com) plugin that displays the official New York City Public Schools (NYC DOE) lunch menu for today (or the next school day) and the next three upcoming school days — refreshed automatically on every screen update.
+A [TRMNL](https://usetrmnl.com) plugin that displays the official New York City Public Schools (NYC DOE) lunch menu for today with a clean, glanceable preview for tomorrow — refreshed automatically on every screen update.
 
-Defaults to **Pre-K - 8 Lunch Menu**, and each user can pick from all 15 official NYC DOE lunch menus (Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, and Infant/Toddler) directly in the plugin settings dropdown.
+Designed to look like an appetizing cafeteria blackboard that kids and parents can easily read from across the kitchen. Defaults to **Pre-K - 8 Lunch Menu**, with a dropdown in settings supporting all 15 official NYC DOE lunch menus (Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, and Infant/Toddler).
 
 [![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ryanhanwu&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/ryanhanwu)
 
@@ -12,21 +12,23 @@ Defaults to **Pre-K - 8 Lunch Menu**, and each user can pick from all 15 officia
 
 ```
 ┌────────────────────────────────────────────────────────────────────┐
-│  Pre-K - 8 Lunch Menu                   NYC Public Schools         │
-│  NYC Public Schools • (V) Vegetarian • (VE) Vegan • (H) Halal      │
+│ 🍎 What's for Lunch?  Pre-K – 8        (V) Veggie • (VE) Vegan     │
 ├────────────────────────────────────────────────────────────────────┤
-│  [TODAY'S LUNCH]  Tue, Oct 20                      Leafy Green Bar │
-│  • Chicken Tenders with Dipping Sauce                              │
-│  • Fish Sticks with Tartar Sauce                                   │
-│  • Garlic Knot (V)                                                 │
-│  • Parmesan Carrot Sticks (V)                                      │
+│ ┌────────────────────────────────────────────────────────────────┐ │
+│ │ [TODAY] Tuesday, Oct 20              🥗 Salad Bar: Leafy Green │ │
+│ │ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ │ │
+│ │ • Chicken Tenders with Dipping Sauce                           │ │
+│ │ • Fish Sticks with Tartar Sauce                                │ │
+│ │ • Garlic Knot (V)                                              │ │
+│ │ • Parmesan Carrot Sticks (V)                                   │ │
+│ └────────────────────────────────────────────────────────────────┘ │
+│                                                                    │
+│ ┌────────────────────────────────────────────────────────────────┐ │
+│ │ [👀 TOMORROW'S LUNCH]                            Wed, Oct 21   │ │
+│ │ Black Bean Burger (VE) • Chicken Cheeseburger • Wedge Fries    │ │
+│ └────────────────────────────────────────────────────────────────┘ │
 ├────────────────────────────────────────────────────────────────────┤
-│  UPCOMING DAYS                                                     │
-│  Wed, Oct 21   Black Bean Burger (VE) • Chicken Cheeseburger • ... │
-│  Thu, Oct 22   Sweet Ginger Chicken • Garlic Noodles (VE) • ...    │
-│  Fri, Oct 23   Bean & Cheese Taquito (V) • Empanada (V) • ...      │
-├────────────────────────────────────────────────────────────────────┤
-│  Updated Oct 20, 6:30 PM                                           │
+│ Official NYC DOE • 2026-2027                   Updated Today, 6:49 │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -39,14 +41,14 @@ TRMNL polls → https://trmnl-nyc-ps-lunch.<subdomain>.workers.dev/lunch?menu={{
                   ↓
           Cloudflare Worker fetches official NYC DOE monthly CSV(s)
                   ↓
-          Cleans & merges menu items, handles month rollovers
+          Cleans & merges multi-cell items, handles month rollovers
                   ↓
           Returns merge_variables JSON → TRMNL renders Liquid template
 ```
 
 - **Data source:** Official NYC Department of Education monthly menu CSVs (`schools.nyc.gov/docs/default-source/school-menus/{school-year}/{month}/{menu-slug}.csv`)
 - **Server:** Cloudflare Worker (free tier: 100k req/day)
-- **Deploy:** GitHub Actions on push to `main`
+- **Deploy:** GitHub Actions on push to `main` (or manual `wrangler deploy`)
 
 ---
 
@@ -90,7 +92,7 @@ npm install
    - `CF_API_TOKEN` — your Cloudflare API token
    - `CF_ACCOUNT_ID` — your Cloudflare Account ID
 
-Push to `main` — GitHub Actions deploys the Worker automatically.
+Push to `main` — GitHub Actions deploys the Worker automatically. Note your Worker URL (e.g. `https://trmnl-nyc-ps-lunch.YOUR-SUBDOMAIN.workers.dev`).
 
 **Test locally first:**
 ```bash
@@ -112,7 +114,7 @@ curl "http://localhost:8787/lunch?menu=Pre-K%20-%208%20Lunch%20Menu&date=2026-10
    https://trmnl-nyc-ps-lunch.YOUR-SUBDOMAIN.workers.dev/lunch?menu={{ menu_type }}
    ```
 4. In the **Custom Fields** section, paste the contents of [`plugin/custom-fields.yml`](plugin/custom-fields.yml)
-5. In the **Markup** editor, paste the contents of [`plugin/markup.liquid`](plugin/markup.liquid) (and optional half/quadrant views)
+5. In the **Markup** editor, paste the contents of [`src/full.liquid`](src/full.liquid) (and optional half/quadrant views)
 6. Save the plugin
 
 ---
