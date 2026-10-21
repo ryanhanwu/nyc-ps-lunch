@@ -1,4 +1,4 @@
-<div class="layout layout--col layout--top layout--stretch-x gap--small lg:gap--medium portrait:gap--tiny">
+<div class="layout layout--col layout--top layout--stretch-x gap--small lg:gap--medium portrait:gap--small">
   <div class="flex flex--between flex--center-y">
     <span class="title title--small lg:title--large">{{ selected_short }} Lunch</span>
     {% if current_day %}
@@ -14,14 +14,17 @@
   <div class="columns gap--large">
     <!-- Today -->
     <div class="column">
-      <div class="flex flex--col flex--left gap--tiny">
+      <div class="flex flex--col flex--left gap--small">
         <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }}</span>
         {% if current_day.items and current_day.items.size > 0 %}
         <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
-          <div class="column gap--tiny">
+          <div class="column gap--small">
             {% for item in current_day.items %}
             <div class="item">
-              <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+              <div class="meta"></div>
+              <div class="content">
+                <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+              </div>
             </div>
             {% endfor %}
           </div>
@@ -35,14 +38,17 @@
     <!-- Tomorrow -->
     {% if next_up %}
     <div class="column">
-      <div class="flex flex--col flex--left gap--tiny">
+      <div class="flex flex--col flex--left gap--small">
         <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.day_short | default: next_up.full_date }})</span>
         {% if next_up.items and next_up.items.size > 0 %}
         <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
-          <div class="column gap--tiny">
+          <div class="column gap--small">
             {% for item in next_up.items %}
             <div class="item">
-              <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+              <div class="meta"></div>
+              <div class="content">
+                <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+              </div>
             </div>
             {% endfor %}
           </div>

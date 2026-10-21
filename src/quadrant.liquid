@@ -1,5 +1,5 @@
-<div class="layout layout--col layout--top layout--stretch-x gap--small lg:gap--medium portrait:gap--tiny">
-  <div class="flex flex--col flex--left gap--tiny">
+<div class="layout layout--col layout--top layout--stretch-x gap--small lg:gap--medium portrait:gap--small">
+  <div class="flex flex--col flex--left gap--small">
     <span class="title title--small lg:title--base">{{ selected_short }} Lunch</span>
     {% if current_day %}
     <span class="label label--small lg:label--base">{{ current_day.full_date }} &bull; {{ current_day.status_label | default: "TODAY" }}</span>
@@ -13,10 +13,13 @@
   {% else %}
   {% if current_day.items and current_day.items.size > 0 %}
   <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
-    <div class="column gap--tiny">
+    <div class="column gap--small">
       {% for item in current_day.items %}
       <div class="item">
-        <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+        <div class="meta"></div>
+        <div class="content">
+          <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+        </div>
       </div>
       {% endfor %}
     </div>
