@@ -1,4 +1,4 @@
-<div class="layout layout--col layout--stretch-x gap--space-between lg:gap--large portrait:gap--small">
+<div class="layout layout--col layout--top layout--stretch-x gap--small lg:gap--medium portrait:gap--small">
   <div class="flex flex--col flex--left gap--tiny">
     <span class="title title--small lg:title--base">{{ selected_short }} Lunch</span>
     <span class="label label--small lg:label--base label--gray 1bit:text--black">NYC Public Schools</span>
@@ -9,41 +9,41 @@
   {% if no_menu or current_day == nil %}
   <span class="label label--gray 1bit:text--black lg:label--base">No school lunch menu available.</span>
   {% else %}
-  <div class="flex flex--col flex--left gap--tiny">
-    <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }} &bull; {{ current_day.full_date }}</span>
-    {% if current_day.items and current_day.items.size > 0 %}
-    <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
-      <div class="column">
-        {% for item in current_day.items limit: 4 %}
-        <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
-        {% endfor %}
+  <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }} &bull; {{ current_day.full_date }}</span>
+  {% if current_day.items and current_day.items.size > 0 %}
+  <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
+    <div class="column gap--tiny">
+      {% for item in current_day.items %}
+      <div class="item">
+        <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
       </div>
+      {% endfor %}
     </div>
-    {% else %}
-    <span class="value value--small lg:value--base text--left" data-clamp="3">{{ current_day.summary }}</span>
-    {% endif %}
-    {% if current_day.salad_bar %}
-    <span class="label label--small lg:label--base label--gray 1bit:text--black text--left" data-clamp="1">Salad Bar: {{ current_day.salad_bar }}</span>
-    {% endif %}
   </div>
+  {% else %}
+  <span class="value value--small lg:value--base" data-clamp="3">{{ current_day.summary }}</span>
+  {% endif %}
+  {% if current_day.salad_bar %}
+  <span class="label label--small lg:label--base label--gray 1bit:text--black" data-clamp="1">Salad Bar: {{ current_day.salad_bar }}</span>
+  {% endif %}
 
   <div class="divider"></div>
 
   {% if next_up %}
-  <div class="flex flex--col flex--left gap--tiny">
-    <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.full_date }})</span>
-    {% if next_up.items and next_up.items.size > 0 %}
-    <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
-      <div class="column">
-        {% for item in next_up.items limit: 3 %}
-        <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
-        {% endfor %}
+  <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.full_date }})</span>
+  {% if next_up.items and next_up.items.size > 0 %}
+  <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
+    <div class="column gap--tiny">
+      {% for item in next_up.items %}
+      <div class="item">
+        <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
       </div>
+      {% endfor %}
     </div>
-    {% else %}
-    <span class="value value--small lg:value--base text--left" data-clamp="2">{{ next_up.summary }}</span>
-    {% endif %}
   </div>
+  {% else %}
+  <span class="value value--small lg:value--base" data-clamp="2">{{ next_up.summary }}</span>
+  {% endif %}
   {% endif %}
   {% endif %}
 </div>
