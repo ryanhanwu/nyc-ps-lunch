@@ -39,7 +39,7 @@
   <div class="flex flex--col gap--tiny grow">
     {% for item in current_day.items limit: 4 %}
     <div class="item">
-      <span class="value value--small lg:value--large portrait:value--small lg:portrait:value--base" data-clamp="1">&bull; {{ item }}</span>
+      <span class="value value--base lg:value--large portrait:value--small lg:portrait:value--base" data-clamp="1">&bull; {{ item }}</span>
     </div>
     {% endfor %}
   </div>
@@ -63,12 +63,12 @@
   <div class="grid grid--cols-2 gap--tiny portrait:grid--cols-1">
     {% for item in next_up.items limit: 4 %}
     <div class="item{% if forloop.index > 2 %} portrait:hidden{% endif %}">
-      <span class="value value--small lg:value--large portrait:value--small lg:portrait:value--base" data-clamp="2">&bull; {{ item }}</span>
+      <span class="value value--small lg:value--base portrait:value--small lg:portrait:value--base" data-clamp="1">&bull; {{ item }}</span>
     </div>
     {% endfor %}
   </div>
   {% else %}
-  <span class="value value--small lg:value--large portrait:value--small lg:portrait:value--base" data-clamp="2">
+  <span class="value value--small lg:value--base portrait:value--small lg:portrait:value--base" data-clamp="2">
     {{ next_up.summary }}
   </span>
   {% endif %}
