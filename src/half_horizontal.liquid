@@ -1,6 +1,6 @@
 <div class="layout layout--col gap--space-between lg:gap--large portrait:gap--tiny">
   <div class="flex flex--between flex--center-y">
-    <span class="title title--medium lg:title--xlarge">🍎 {{ menu_short | default: "Pre-K – 8" }} Lunch</span>
+    <span class="title title--small lg:title--large">🍎 {{ menu_short | default: "Pre-K – 8" }} Lunch</span>
     {% if current_day %}
     <span class="label label--filled lg:label--base">{{ current_day.full_date }}</span>
     {% endif %}
@@ -9,12 +9,12 @@
   <div class="divider"></div>
 
   {% if current_day %}
-  <div class="flex gap--xlarge portrait:gap--medium lg:w--full">
+  <div class="flex gap--large portrait:gap--medium lg:w--full">
     <!-- Today -->
     <div class="flex flex--col gap--tiny" style="flex: 1; text-align: left;">
-      <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY'S LUNCH" }}</span>
+      <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }}</span>
       {% for item in current_day.items limit: 3 %}
-      <span class="value value--small lg:value--large" style="text-align: left;">• {{ item }}</span>
+      <span class="value value--small lg:value--base" style="text-align: left; line-height: 1.25;">&bull; {{ item }}</span>
       {% endfor %}
     </div>
 
@@ -22,9 +22,9 @@
     {% if tomorrow or next_day_1 %}
     {% assign next_up = tomorrow | default: next_day_1 %}
     <div class="flex flex--col gap--tiny" style="flex: 1; text-align: left;">
-      <span class="label label--underline lg:label--base">NEXT ({{ next_up.full_date }})</span>
+      <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.day_short }})</span>
       {% for item in next_up.items limit: 3 %}
-      <span class="value value--small lg:value--large" style="text-align: left;">• {{ item }}</span>
+      <span class="value value--small lg:value--base" style="text-align: left; line-height: 1.25;">&bull; {{ item }}</span>
       {% endfor %}
     </div>
     {% endif %}

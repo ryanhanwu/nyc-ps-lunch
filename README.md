@@ -14,21 +14,17 @@ Designed to look like an appetizing cafeteria blackboard that kids and parents c
 ┌────────────────────────────────────────────────────────────────────┐
 │ 🍎 What's for Lunch?  Pre-K – 8        (V) Veggie • (VE) Vegan     │
 ├────────────────────────────────────────────────────────────────────┤
-│ ┌────────────────────────────────────────────────────────────────┐ │
-│ │ [TODAY] Tuesday, Oct 20              🥗 Salad Bar: Leafy Green │ │
-│ │ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ │ │
-│ │ • Chicken Tenders with Dipping Sauce                           │ │
-│ │ • Fish Sticks with Tartar Sauce                                │ │
-│ │ • Garlic Knot (V)                                              │ │
-│ │ • Parmesan Carrot Sticks (V)                                   │ │
-│ └────────────────────────────────────────────────────────────────┘ │
+│ [TODAY] Tuesday, Oct 20                  🥗 Salad Bar: Leafy Green │
 │                                                                    │
-│ ┌────────────────────────────────────────────────────────────────┐ │
-│ │ [👀 TOMORROW'S LUNCH]                            Wed, Oct 21   │ │
-│ │ Black Bean Burger (VE) • Chicken Cheeseburger • Wedge Fries    │ │
-│ └────────────────────────────────────────────────────────────────┘ │
+│ • Chicken Tenders with Dipping Sauce                               │
+│ • Fish Sticks with Tartar Sauce                                    │
+│ • Garlic Knot (V)                                                  │
+│ • Parmesan Carrot Sticks (V)                                       │
 ├────────────────────────────────────────────────────────────────────┤
-│ Official NYC DOE • 2026-2027                   Updated Today, 6:49 │
+│ TOMORROW'S LUNCH • Wednesday, Oct 21                               │
+│ Black Bean Burger (VE) • Chicken Cheeseburger • Wedge Fries        │
+├────────────────────────────────────────────────────────────────────┤
+│ NYC Department of Education • 2026-2027        Updated Today, 6:49 │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
