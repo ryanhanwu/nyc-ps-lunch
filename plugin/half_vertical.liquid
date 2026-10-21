@@ -1,5 +1,5 @@
-<div class="layout layout--col gap--space-between lg:gap--large portrait:gap--small">
-  <div class="flex flex--col gap--tiny">
+<div class="layout layout--col layout--stretch-x gap--space-between lg:gap--large portrait:gap--small">
+  <div class="flex flex--col flex--left gap--tiny">
     <span class="title title--small lg:title--medium">🍎 {{ menu_short | default: "Pre-K – 8" }} Lunch</span>
     <span class="label label--small lg:label--base label--gray">NYC Public Schools</span>
   </div>
@@ -7,10 +7,10 @@
   <div class="divider"></div>
 
   {% if current_day %}
-  <div class="flex flex--col gap--tiny" style="text-align: left;">
+  <div class="flex flex--col flex--left gap--tiny">
     <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }} &bull; {{ current_day.full_date }}</span>
     {% for item in current_day.items limit: 4 %}
-    <span class="value value--small lg:value--base" style="text-align: left; line-height: 1.25;">&bull; {{ item }}</span>
+    <span class="value value--small lg:value--base text--left">&bull; {{ item }}</span>
     {% endfor %}
     {% if current_day.salad_bar %}
     <span class="label label--small label--gray">🥗 {{ current_day.salad_bar }}</span>
@@ -21,9 +21,9 @@
 
   {% if tomorrow or next_day_1 %}
   {% assign next_up = tomorrow | default: next_day_1 %}
-  <div class="flex flex--col gap--tiny" style="text-align: left;">
+  <div class="flex flex--col flex--left gap--tiny">
     <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.full_date }})</span>
-    <span class="value value--small" style="text-align: left; line-height: 1.2;">
+    <span class="value value--small text--left">
       {{ next_up.summary }}
     </span>
   </div>

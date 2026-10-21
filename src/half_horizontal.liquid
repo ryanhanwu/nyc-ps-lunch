@@ -1,31 +1,35 @@
-<div class="layout layout--col gap--space-between lg:gap--large portrait:gap--tiny">
+<div class="layout layout--col layout--stretch-x gap--space-between lg:gap--large portrait:gap--tiny">
   <div class="flex flex--between flex--center-y">
     <span class="title title--small lg:title--large">🍎 {{ menu_short | default: "Pre-K – 8" }} Lunch</span>
     {% if current_day %}
-    <span class="label label--filled lg:label--base">{{ current_day.full_date }}</span>
+    <span class="label label--inverted lg:label--base">{{ current_day.full_date }}</span>
     {% endif %}
   </div>
 
   <div class="divider"></div>
 
   {% if current_day %}
-  <div class="flex gap--large portrait:gap--medium lg:w--full">
+  <div class="columns gap--large">
     <!-- Today -->
-    <div class="flex flex--col gap--tiny" style="flex: 1; text-align: left;">
-      <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }}</span>
-      {% for item in current_day.items limit: 3 %}
-      <span class="value value--small lg:value--base" style="text-align: left; line-height: 1.25;">&bull; {{ item }}</span>
-      {% endfor %}
+    <div class="column">
+      <div class="flex flex--col flex--left gap--tiny">
+        <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }}</span>
+        {% for item in current_day.items limit: 3 %}
+        <span class="value value--small lg:value--base text--left">&bull; {{ item }}</span>
+        {% endfor %}
+      </div>
     </div>
 
     <!-- Tomorrow -->
     {% if tomorrow or next_day_1 %}
     {% assign next_up = tomorrow | default: next_day_1 %}
-    <div class="flex flex--col gap--tiny" style="flex: 1; text-align: left;">
-      <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.day_short }})</span>
-      {% for item in next_up.items limit: 3 %}
-      <span class="value value--small lg:value--base" style="text-align: left; line-height: 1.25;">&bull; {{ item }}</span>
-      {% endfor %}
+    <div class="column">
+      <div class="flex flex--col flex--left gap--tiny">
+        <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.day_short }})</span>
+        {% for item in next_up.items limit: 3 %}
+        <span class="value value--small lg:value--base text--left">&bull; {{ item }}</span>
+        {% endfor %}
+      </div>
     </div>
     {% endif %}
   </div>
