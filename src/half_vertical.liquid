@@ -12,9 +12,13 @@
   <div class="flex flex--col flex--left gap--tiny">
     <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }} &bull; {{ current_day.full_date }}</span>
     {% if current_day.items and current_day.items.size > 0 %}
-    {% for item in current_day.items limit: 4 %}
-    <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
-    {% endfor %}
+    <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
+      <div class="column">
+        {% for item in current_day.items limit: 4 %}
+        <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
+        {% endfor %}
+      </div>
+    </div>
     {% else %}
     <span class="value value--small lg:value--base text--left" data-clamp="3">{{ current_day.summary }}</span>
     {% endif %}
@@ -25,13 +29,20 @@
 
   <div class="divider"></div>
 
-  {% if tomorrow or next_day_1 %}
-  {% assign next_up = tomorrow | default: next_day_1 %}
+  {% if next_up %}
   <div class="flex flex--col flex--left gap--tiny">
     <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.full_date }})</span>
-    <span class="value value--small lg:value--base text--left" data-clamp="2" data-clamp-lg="3">
-      {{ next_up.summary }}
-    </span>
+    {% if next_up.items and next_up.items.size > 0 %}
+    <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
+      <div class="column">
+        {% for item in next_up.items limit: 3 %}
+        <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <span class="value value--small lg:value--base text--left" data-clamp="2">{{ next_up.summary }}</span>
+    {% endif %}
   </div>
   {% endif %}
   {% endif %}

@@ -43,7 +43,7 @@
     <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
       <div class="column">
         {% for item in current_day.items limit: 5 %}
-        <span class="value value--small lg:value--large text--left" data-clamp="1">&bull; {{ item }}</span>
+        <span class="value value--small lg:value--xlarge text--left" data-clamp="1">&bull; {{ item }}</span>
         {% endfor %}
       </div>
     </div>
@@ -52,8 +52,9 @@
   <div class="divider"></div>
 
   <!-- Tomorrow's Lunch Section -->
-  {% if tomorrow or next_day_1 %}
-  {% assign next_up = tomorrow | default: next_day_1 %}
+  {% if next_up %}
+  {% assign has_next_items = false %}
+  {% if next_up.items and next_up.items.size > 0 %}{% assign has_next_items = true %}{% endif %}
   <div class="flex flex--col flex--stretch-x gap--tiny lg:gap--small">
     <div class="flex flex--between flex--center-y">
       <span class="label label--underline lg:label--large">
@@ -65,9 +66,18 @@
       </span>
       {% endif %}
     </div>
-    <span class="value value--small lg:value--base text--left" data-clamp="2">
+
+    <!-- OG: one-line summary. X: the full menu, and the summary only when the feed has no item list -->
+    <span class="value value--small lg:value--large text--left{% if has_next_items %} lg:hidden{% endif %}" data-clamp="2">
       {{ next_up.summary }}
     </span>
+    {% if has_next_items %}
+    <div class="hidden lg:flex flex--col gap--tiny">
+      {% for item in next_up.items limit: 4 %}
+      <span class="value value--small lg:value--large text--left" data-clamp="1">&bull; {{ item }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
   {% endif %}
 

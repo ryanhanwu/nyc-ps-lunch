@@ -20,8 +20,7 @@
     <span class="value value--small lg:value--base text--left" data-clamp="2">{{ current_day.summary }}</span>
     {% endif %}
   </div>
-  {% if tomorrow or next_day_1 %}
-  {% assign next_up = tomorrow | default: next_day_1 %}
+  {% if next_up %}
   <span class="label label--gray 1bit:text--black label--small lg:label--base text--left" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.summary }}</span>
   {% endif %}
   {% endif %}
