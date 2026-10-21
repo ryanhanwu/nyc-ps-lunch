@@ -1,0 +1,58 @@
+{%- assign raw_menu = trmnl.plugin_settings.custom_fields_values.menu_type | default: menu_type | downcase | strip -%}
+{%- case raw_menu -%}
+  {%- when "pre-k - 8 lunch menu with halal option" -%}
+    {%- assign fallback_name = "Pre-K - 8 Lunch Menu (Halal)" -%}
+    {%- assign fallback_short = "Pre-K – 8 (Halal)" -%}
+  {%- when "pre-k - 8 vegetarian lunch menu" -%}
+    {%- assign fallback_name = "Pre-K - 8 Vegetarian Lunch Menu" -%}
+    {%- assign fallback_short = "Pre-K – 8 Vegetarian" -%}
+  {%- when "pre-k - 8 express hot lunch menu" -%}
+    {%- assign fallback_name = "Pre-K - 8 Express Hot Lunch Menu" -%}
+    {%- assign fallback_short = "Pre-K – 8 Express Hot" -%}
+  {%- when "pre-k - 8 express hot lunch menu with halal option" -%}
+    {%- assign fallback_name = "Pre-K - 8 Express Hot (Halal)" -%}
+    {%- assign fallback_short = "Pre-K – 8 Express Hot (Halal)" -%}
+  {%- when "pre-k - 8 express cold lunch menu" -%}
+    {%- assign fallback_name = "Pre-K - 8 Express Cold Lunch Menu" -%}
+    {%- assign fallback_short = "Pre-K – 8 Express Cold" -%}
+  {%- when "pre-k - 8 express cold lunch menu with halal option" -%}
+    {%- assign fallback_name = "Pre-K - 8 Express Cold (Halal)" -%}
+    {%- assign fallback_short = "Pre-K – 8 Express Cold (Halal)" -%}
+  {%- when "high school lunch menu" -%}
+    {%- assign fallback_name = "High School Lunch Menu" -%}
+    {%- assign fallback_short = "High School" -%}
+  {%- when "high school lunch menu with halal option" -%}
+    {%- assign fallback_name = "High School Lunch Menu (Halal)" -%}
+    {%- assign fallback_short = "High School (Halal)" -%}
+  {%- when "high school express hot lunch menu" -%}
+    {%- assign fallback_name = "High School Express Hot Lunch Menu" -%}
+    {%- assign fallback_short = "HS Express Hot" -%}
+  {%- when "high school express hot lunch menu with halal option" -%}
+    {%- assign fallback_name = "High School Express Hot (Halal)" -%}
+    {%- assign fallback_short = "HS Express Hot (Halal)" -%}
+  {%- when "high school express cold lunch menu" -%}
+    {%- assign fallback_name = "High School Express Cold Lunch Menu" -%}
+    {%- assign fallback_short = "HS Express Cold" -%}
+  {%- when "food court menu" -%}
+    {%- assign fallback_name = "Food Court Menu" -%}
+    {%- assign fallback_short = "Food Court" -%}
+  {%- when "food court menu with halal option" -%}
+    {%- assign fallback_name = "Food Court Menu (Halal)" -%}
+    {%- assign fallback_short = "Food Court (Halal)" -%}
+  {%- when "infant toddler lunch menu" -%}
+    {%- assign fallback_name = "Infant Toddler Lunch Menu" -%}
+    {%- assign fallback_short = "Infant & Toddler" -%}
+  {%- else -%}
+    {%- assign fallback_name = "Pre-K - 8 Lunch Menu" -%}
+    {%- assign fallback_short = "Pre-K – 8" -%}
+{%- endcase -%}
+
+{%- assign selected_name = menu_name | default: fallback_name -%}
+{%- assign selected_short = menu_short | default: fallback_short -%}
+
+{%- capture svg_logo -%}
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
+  <path d="M10 2c1 .5 2 2 2 5"/>
+</svg>
+{%- endcapture -%}

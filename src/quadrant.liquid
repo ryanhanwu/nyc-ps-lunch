@@ -1,14 +1,6 @@
-{% assign selected_short = menu_short | default: trmnl.plugin_settings.custom_fields_values.menu_type | default: menu_type | default: "Pre-K – 8" %}
-
 <div class="layout layout--col layout--stretch-x gap--space-between lg:gap--medium portrait:gap--tiny">
   <div class="flex flex--col flex--left gap--tiny">
-    <div class="flex flex--center-y gap--small">
-      <svg class="image image--stroke" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
-        <path d="M10 2c1 .5 2 2 2 5"/>
-      </svg>
-      <span class="title title--small lg:title--medium">{{ selected_short }} Lunch</span>
-    </div>
+    <span class="title title--small lg:title--base">{{ selected_short }} Lunch</span>
     {% if current_day %}
     <span class="label label--small lg:label--base">{{ current_day.full_date }} &bull; {{ current_day.status_label | default: "TODAY" }}</span>
     {% endif %}
@@ -24,18 +16,15 @@
   </div>
   {% if tomorrow or next_day_1 %}
   {% assign next_up = tomorrow | default: next_day_1 %}
-  <span class="label label--gray label--small lg:label--base text--left" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.summary }}</span>
+  <span class="label label--gray 1bit:text--black label--small lg:label--base text--left" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.summary }}</span>
   {% endif %}
   {% else %}
-  <span class="label label--gray lg:label--base">No menu available</span>
+  <span class="label label--gray 1bit:text--black lg:label--base">No menu available</span>
   {% endif %}
 </div>
 
 <div class="title_bar">
-  <svg class="image image--stroke" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
-    <path d="M10 2c1 .5 2 2 2 5"/>
-  </svg>
+  <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" />
   <span class="title">{{ selected_short }}</span>
   <span class="instance">NYC PS</span>
 </div>

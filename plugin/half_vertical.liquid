@@ -1,15 +1,7 @@
-{% assign selected_short = menu_short | default: trmnl.plugin_settings.custom_fields_values.menu_type | default: menu_type | default: "Pre-K – 8" %}
-
 <div class="layout layout--col layout--stretch-x gap--space-between lg:gap--large portrait:gap--small">
   <div class="flex flex--col flex--left gap--tiny">
-    <div class="flex flex--center-y gap--small">
-      <svg class="image image--stroke" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
-        <path d="M10 2c1 .5 2 2 2 5"/>
-      </svg>
-      <span class="title title--small lg:title--medium">{{ selected_short }} Lunch</span>
-    </div>
-    <span class="label label--small lg:label--base label--gray">NYC Public Schools</span>
+    <span class="title title--small lg:title--base">{{ selected_short }} Lunch</span>
+    <span class="label label--small lg:label--base label--gray 1bit:text--black">NYC Public Schools</span>
   </div>
 
   <div class="divider"></div>
@@ -21,7 +13,7 @@
     <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
     {% endfor %}
     {% if current_day.salad_bar %}
-    <span class="label label--small lg:label--base label--gray text--left" data-clamp="1">Salad Bar: {{ current_day.salad_bar }}</span>
+    <span class="label label--small lg:label--base label--gray 1bit:text--black text--left" data-clamp="1">Salad Bar: {{ current_day.salad_bar }}</span>
     {% endif %}
   </div>
 
@@ -31,21 +23,18 @@
   {% assign next_up = tomorrow | default: next_day_1 %}
   <div class="flex flex--col flex--left gap--tiny">
     <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.full_date }})</span>
-    <span class="value value--small lg:value--base text--left" data-clamp="2">
+    <span class="value value--small lg:value--base text--left" data-clamp="2" data-clamp-lg="3">
       {{ next_up.summary }}
     </span>
   </div>
   {% endif %}
   {% else %}
-  <span class="label label--gray lg:label--base">No school lunch menu available.</span>
+  <span class="label label--gray 1bit:text--black lg:label--base">No school lunch menu available.</span>
   {% endif %}
 </div>
 
 <div class="title_bar">
-  <svg class="image image--stroke" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
-    <path d="M10 2c1 .5 2 2 2 5"/>
-  </svg>
+  <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" />
   <span class="title">{{ selected_short }}</span>
   <span class="instance">NYC PS</span>
 </div>
