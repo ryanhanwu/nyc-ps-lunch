@@ -1,9 +1,9 @@
-<div class="layout layout--col layout--stretch-x gap--space-between">
+<div class="layout layout--col layout--stretch-x gap--space-between portrait:gap--small">
 
   <!-- Header: Title & Dietary Legend -->
-  <div class="flex flex--between flex--center-y">
+  <div class="flex flex--between flex--center-y portrait:flex--col portrait:flex--left portrait:gap--tiny">
     <div class="flex flex--center-y gap--small">
-      <span class="title title--small lg:title--base">What's for Lunch?</span>
+      <span class="title title--small lg:title--large">What's for Lunch?</span>
       <span class="label label--small lg:label--base label--outline">{{ selected_short }}</span>
     </div>
     <span class="label label--small lg:label--base label--gray 1bit:text--black">
@@ -21,51 +21,51 @@
   {% else %}
 
   <!-- Today's Lunch Section -->
-  <div class="flex flex--col flex--stretch-x gap--small lg:gap--medium">
+  <div class="flex flex--col flex--stretch-x gap--small lg:gap--medium portrait:gap--small">
     <div class="flex flex--between flex--center-y">
       <div class="flex flex--center-y gap--small">
         <span class="label label--inverted lg:label--large">{{ current_day.status_label | default: "TODAY" }}</span>
-        <span class="value value--base lg:value--large"><strong>{{ current_day.day_name | default: current_day.day_short }}, {{ current_day.date }}</strong></span>
+        <span class="value value--base lg:value--large portrait:value--base" data-fit-value="true"><strong>{{ current_day.day_name | default: current_day.day_short }}, {{ current_day.date }}</strong></span>
       </div>
       <div class="flex flex--center-y gap--small">
         {% if current_day.note %}
         <span class="label label--inverted label--small lg:label--base">{{ current_day.note }}</span>
         {% endif %}
         {% if current_day.salad_bar %}
-        <span class="label label--small lg:label--base label--underline">
+        <span class="label label--small lg:label--base label--underline" data-clamp="1">
           Salad Bar: {{ current_day.salad_bar }}
         </span>
         {% endif %}
       </div>
     </div>
 
-    <!-- Food Items: Stepped up to lg:value--large on TRMNL X -->
-    <div class="flex flex--col flex--left gap--tiny lg:gap--small">
-      {% for item in current_day.items %}
-      <span class="value value--small lg:value--large text--left">
-        &bull; {{ item }}
-      </span>
-      {% endfor %}
+    <!-- Food Items: Stepped up to lg:value--large on X, portrait-aware, capped so it never overflows -->
+    <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
+      <div class="column">
+        {% for item in current_day.items limit: 4 %}
+        <span class="value value--small lg:value--large portrait:value--small lg:portrait:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
+        {% endfor %}
+      </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
   <!-- Tomorrow's Lunch Section -->
-  {% if tomorrow or next_day_1 %}
-  {% assign next_up = tomorrow | default: next_day_1 %}
+  {% if next_up %}
   <div class="flex flex--col flex--stretch-x gap--tiny lg:gap--small">
     <div class="flex flex--between flex--center-y">
       <span class="label label--underline lg:label--large">
         {{ next_up.label | default: "TOMORROW'S LUNCH" }} &bull; {{ next_up.full_date }}
       </span>
       {% if next_up.salad_bar %}
-      <span class="label label--small lg:label--base label--gray 1bit:text--black">
+      <span class="label label--small lg:label--base label--gray 1bit:text--black" data-clamp="1">
         Salad Bar: {{ next_up.salad_bar }}
       </span>
       {% endif %}
     </div>
-    <span class="value value--small lg:value--base text--left">
+
+    <span class="value value--small lg:value--base portrait:value--small lg:portrait:value--base text--left" data-clamp="2" data-clamp-lg="3">
       {{ next_up.summary }}
     </span>
   </div>
@@ -75,8 +75,10 @@
 
   <!-- Footer -->
   <div class="flex flex--between flex--center-y">
-    <span class="label label--small lg:label--base label--gray 1bit:text--black">NYC Department of Education &bull; {{ school_year | default: "2026-2027" }}</span>
-    <span class="label label--small lg:label--base label--gray 1bit:text--black">Updated {{ updated_at | default: "Today" }}</span>
+    <span class="label label--small lg:label--base label--gray 1bit:text--black">NYC Department of Education{% if school_year %} &bull; {{ school_year }}{% endif %}</span>
+    {% if updated_at %}
+    <span class="label label--small lg:label--base label--gray 1bit:text--black">Updated {{ updated_at }}</span>
+    {% endif %}
   </div>
 
 </div>
