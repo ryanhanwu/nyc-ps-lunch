@@ -472,6 +472,7 @@ async function getMenuData(menu: MenuMeta, targetIsoDate: string) {
   return {
     menu_name: menu.name,
     menu_short: menu.shortName,
+    is_halal: menu.key.includes("halal"),
     school_year: curr.schoolYear,
     current_day: currentDay,
     tomorrow: tomorrow,

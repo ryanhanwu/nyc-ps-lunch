@@ -7,7 +7,7 @@
       <span class="label label--small lg:label--base label--outline">{{ selected_short }}</span>
     </div>
     <span class="label label--small lg:label--base label--gray 1bit:text--black">
-      (V) Veggie &bull; (VE) Vegan &bull; (H) Halal
+      (V) Veggie &bull; (VE) Vegan{% if show_halal %} &bull; (H) Halal{% endif %}
     </span>
   </div>
 
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <!-- Food Items: Stepped up to lg:value--large on X, portrait-aware, capped so it never overflows -->
+    <!-- Today's Food Items: Bulleted list, stepped up to lg:value--large on X -->
     <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
       <div class="column">
         {% for item in current_day.items limit: 4 %}
@@ -65,9 +65,17 @@
       {% endif %}
     </div>
 
+    {% if next_up.items and next_up.items.size > 0 %}
+    <div class="grid grid--cols-2 gap--tiny portrait:grid--cols-1">
+      {% for item in next_up.items limit: 4 %}
+      <span class="value value--small lg:value--base portrait:value--small lg:portrait:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
+      {% endfor %}
+    </div>
+    {% else %}
     <span class="value value--small lg:value--base portrait:value--small lg:portrait:value--base text--left" data-clamp="2" data-clamp-lg="3">
       {{ next_up.summary }}
     </span>
+    {% endif %}
   </div>
   {% endif %}
 

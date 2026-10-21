@@ -1,30 +1,11 @@
-{%- assign raw_menu = trmnl.plugin_settings.custom_fields_values.menu_type | default: menu_type | downcase | strip | replace: "_", " " -%}
-
-{%- capture menu_lookup -%}
-pre-k - 8 lunch menu||Pre-K - 8 Lunch Menu||Pre-K – 8;;pre-k - 8 lunch menu with halal option||Pre-K - 8 Lunch Menu (Halal)||Pre-K – 8 (Halal);;pre-k - 8 vegetarian lunch menu||Pre-K - 8 Vegetarian Lunch Menu||Pre-K – 8 Vegetarian;;pre-k - 8 express hot lunch menu||Pre-K - 8 Express Hot Lunch Menu||Pre-K – 8 Express Hot;;pre-k - 8 express hot lunch menu with halal option||Pre-K - 8 Express Hot (Halal)||Pre-K – 8 Express Hot (Halal);;pre-k - 8 express cold lunch menu||Pre-K - 8 Express Cold Lunch Menu||Pre-K – 8 Express Cold;;pre-k - 8 express cold lunch menu with halal option||Pre-K - 8 Express Cold (Halal)||Pre-K – 8 Express Cold (Halal);;high school lunch menu||High School Lunch Menu||High School;;high school lunch menu with halal option||High School Lunch Menu (Halal)||High School (Halal);;high school express hot lunch menu||High School Express Hot Lunch Menu||HS Express Hot;;high school express hot lunch menu with halal option||High School Express Hot (Halal)||HS Express Hot (Halal);;high school express cold lunch menu||High School Express Cold Lunch Menu||HS Express Cold;;food court menu||Food Court Menu||Food Court;;food court menu with halal option||Food Court Menu (Halal)||Food Court (Halal);;infant toddler lunch menu||Infant Toddler Lunch Menu||Infant & Toddler
-{%- endcapture -%}
-
-{%- assign fallback_name = "" -%}
-{%- assign fallback_short = "" -%}
-{%- assign menu_rows = menu_lookup | strip | split: ";;" -%}
-{%- for row in menu_rows -%}
-  {%- assign cols = row | split: "||" -%}
-  {%- if cols[0] == raw_menu -%}
-    {%- assign fallback_name = cols[1] -%}
-    {%- assign fallback_short = cols[2] -%}
-  {%- endif -%}
-{%- endfor -%}
-{%- if fallback_name == "" -%}
-  {%- assign fallback_name = "Pre-K - 8 Lunch Menu" -%}
-  {%- assign fallback_short = "Pre-K – 8" -%}
-{%- endif -%}
-
-{%- assign selected_name = menu_name | default: fallback_name -%}
-{%- assign selected_short = menu_short | default: fallback_short -%}
-
+{%- assign selected_name = menu_name | default: "Pre-K - 8 Lunch Menu" -%}
+{%- assign selected_short = menu_short | default: "Pre-K – 8" -%}
 {%- assign next_up = tomorrow | default: next_day_1 -%}
-{%- assign today_items = current_day.items -%}
-{%- assign today_summary = current_day.summary -%}
+
+{%- assign show_halal = is_halal | default: false -%}
+{%- if selected_name contains "Halal" or selected_short contains "Halal" -%}
+  {%- assign show_halal = true -%}
+{%- endif -%}
 
 {%- capture svg_logo -%}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
