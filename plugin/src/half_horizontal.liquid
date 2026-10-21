@@ -34,7 +34,7 @@
     {% if next_up %}
     <div class="column">
       <div class="flex flex--col flex--left gap--tiny">
-        <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.day_short }})</span>
+        <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.day_short | default: next_up.full_date }})</span>
         {% if next_up.items and next_up.items.size > 0 %}
         <div class="columns" data-overflow="true" data-overflow-max-cols="1" data-overflow-counter="true">
           <div class="column">

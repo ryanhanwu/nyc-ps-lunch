@@ -96,10 +96,19 @@ function transform(input) {
       ? input.is_halal
       : mapped.halal || /halal/i.test(menuName);
 
+  const rawNext = input.tomorrow || input.next_day_1 || null;
+  const tomorrow = rawNext
+    ? {
+        ...rawNext,
+        day_short: rawNext.day_short || rawNext.full_date || rawNext.date || "",
+      }
+    : null;
+
   return {
     ...input,
     menu_name: menuName,
     menu_short: menuShort,
     is_halal: isHalal,
+    tomorrow: tomorrow,
   };
 }
