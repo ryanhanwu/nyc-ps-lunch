@@ -6,12 +6,18 @@
 
   <div class="divider"></div>
 
-  {% if current_day %}
+  {% if no_menu or current_day == nil %}
+  <span class="label label--gray 1bit:text--black lg:label--base">No school lunch menu available.</span>
+  {% else %}
   <div class="flex flex--col flex--left gap--tiny">
     <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }} &bull; {{ current_day.full_date }}</span>
+    {% if current_day.items and current_day.items.size > 0 %}
     {% for item in current_day.items limit: 4 %}
     <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
     {% endfor %}
+    {% else %}
+    <span class="value value--small lg:value--base text--left" data-clamp="3">{{ current_day.summary }}</span>
+    {% endif %}
     {% if current_day.salad_bar %}
     <span class="label label--small lg:label--base label--gray 1bit:text--black text--left" data-clamp="1">Salad Bar: {{ current_day.salad_bar }}</span>
     {% endif %}
@@ -28,8 +34,6 @@
     </span>
   </div>
   {% endif %}
-  {% else %}
-  <span class="label label--gray 1bit:text--black lg:label--base">No school lunch menu available.</span>
   {% endif %}
 </div>
 

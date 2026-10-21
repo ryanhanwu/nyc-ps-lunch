@@ -8,33 +8,41 @@
 
   <div class="divider"></div>
 
-  {% if current_day %}
-  <div class="columns gap--large">
+  {% if no_menu or current_day == nil %}
+  <span class="label label--gray 1bit:text--black lg:label--base">No school lunch menu available.</span>
+  {% else %}
+  <div class="columns gap--large" data-overflow="true" data-overflow-max-cols="2">
     <!-- Today -->
     <div class="column">
       <div class="flex flex--col flex--left gap--tiny">
         <span class="label label--underline lg:label--base">{{ current_day.status_label | default: "TODAY" }}</span>
+        {% if current_day.items and current_day.items.size > 0 %}
         {% for item in current_day.items limit: 3 %}
         <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
         {% endfor %}
+        {% else %}
+        <span class="value value--small lg:value--base text--left" data-clamp="2">{{ current_day.summary }}</span>
+        {% endif %}
       </div>
     </div>
 
-    <!-- Tomorrow -->
+    <!-- Tomorrow: items when the feed has them, summary text otherwise -->
     {% if tomorrow or next_day_1 %}
     {% assign next_up = tomorrow | default: next_day_1 %}
     <div class="column">
       <div class="flex flex--col flex--left gap--tiny">
         <span class="label label--underline lg:label--base">{{ next_up.label | default: "TOMORROW" }} ({{ next_up.day_short }})</span>
+        {% if next_up.items and next_up.items.size > 0 %}
         {% for item in next_up.items limit: 3 %}
         <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
         {% endfor %}
+        {% else %}
+        <span class="value value--small lg:value--base text--left" data-clamp="2">{{ next_up.summary }}</span>
+        {% endif %}
       </div>
     </div>
     {% endif %}
   </div>
-  {% else %}
-  <span class="label label--gray 1bit:text--black lg:label--base">No school lunch menu available.</span>
   {% endif %}
 </div>
 
