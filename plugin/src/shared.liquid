@@ -18,6 +18,6 @@
 <div class="title_bar">
   <img class="image image--adaptive" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" />
   <span class="title">{{ title }}</span>
-  <span class="instance">NYC PS</span>
+  <span class="instance">{{ trmnl.plugin_settings.instance_name | default: "NYC PS" }}</span>
 </div>
 {% endtemplate %}

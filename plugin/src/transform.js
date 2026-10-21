@@ -97,12 +97,18 @@ function transform(input) {
       : mapped.halal || /halal/i.test(menuName);
 
   const rawNext = input.tomorrow || input.next_day_1 || null;
-  const tomorrow = rawNext
-    ? {
-        ...rawNext,
-        day_short: rawNext.day_short || rawNext.full_date || rawNext.date || "",
-      }
-    : null;
+  let tomorrow = null;
+  if (rawNext) {
+    const nextItems = Array.isArray(rawNext.items) ? rawNext.items : [];
+    const nextSummary =
+      rawNext.summary || (nextItems.length > 0 ? nextItems.join(" • ") : "");
+    tomorrow = {
+      ...rawNext,
+      items: nextItems,
+      summary: nextSummary,
+      day_short: rawNext.day_short || rawNext.full_date || rawNext.date || "",
+    };
+  }
 
   return {
     ...input,

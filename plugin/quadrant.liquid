@@ -25,7 +25,11 @@
   <span class="value value--small lg:value--base" data-clamp="2">{{ current_day.summary }}</span>
   {% endif %}
   {% if next_up %}
+  {% if next_up.items and next_up.items.size > 0 %}
+  <span class="label label--gray 1bit:text--black label--small lg:label--base" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.items | slice: 0, 2 | join: ", " }}</span>
+  {% elsif next_up.summary and next_up.summary != "" %}
   <span class="label label--gray 1bit:text--black label--small lg:label--base" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.summary }}</span>
+  {% endif %}
   {% endif %}
   {% endif %}
 </div>
