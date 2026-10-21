@@ -56,3 +56,11 @@
   <path d="M10 2c1 .5 2 2 2 5"/>
 </svg>
 {%- endcapture -%}
+
+{% template title_bar %}
+<div class="title_bar">
+  <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" />
+  <span class="title">{{ title }}</span>
+  <span class="instance">NYC PS</span>
+</div>
+{% endtemplate %}

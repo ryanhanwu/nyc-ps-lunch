@@ -38,8 +38,4 @@
   {% endif %}
 </div>
 
-<div class="title_bar">
-  <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" />
-  <span class="title">{{ selected_short }}</span>
-  <span class="instance">NYC PS</span>
-</div>
+{% render 'title_bar', svg_logo: svg_logo, title: selected_short %}
