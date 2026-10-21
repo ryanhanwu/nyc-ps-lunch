@@ -1,10 +1,17 @@
+{% assign selected_short = menu_short | default: trmnl.plugin_settings.custom_fields_values.menu_type | default: menu_type | default: "Pre-K – 8" %}
+{% assign selected_name = menu_name | default: trmnl.plugin_settings.custom_fields_values.menu_type | default: menu_type | default: "NYC School Lunch" %}
+
 <div class="layout layout--col layout--stretch-x gap--space-between">
 
   <!-- Header: Title & Dietary Legend -->
   <div class="flex flex--between flex--center-y">
     <div class="flex flex--center-y gap--small">
-      <span class="title title--small lg:title--medium">🍎 What's for Lunch?</span>
-      <span class="label label--small lg:label--base label--outline">{{ menu_short | default: "Pre-K – 8" }}</span>
+      <svg class="image image--stroke" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
+        <path d="M10 2c1 .5 2 2 2 5"/>
+      </svg>
+      <span class="title title--small lg:title--medium">What's for Lunch?</span>
+      <span class="label label--small lg:label--base label--outline">{{ selected_short }}</span>
     </div>
     <span class="label label--small lg:label--base label--gray">
       (V) Veggie &bull; (VE) Vegan &bull; (H) Halal
@@ -15,13 +22,13 @@
 
   {% if no_menu or current_day == nil %}
   <div class="flex flex--col flex--center-x flex--center-y gap--small">
-    <span class="title title--small">No School Lunch Menu Today</span>
-    <span class="label label--gray">Check back on the next scheduled school day.</span>
+    <span class="title title--small lg:title--medium">No School Lunch Menu Today</span>
+    <span class="label label--small lg:label--base label--gray">Check back on the next scheduled school day.</span>
   </div>
   {% else %}
 
   <!-- Today's Lunch Section -->
-  <div class="flex flex--col flex--stretch-x gap--small">
+  <div class="flex flex--col flex--stretch-x gap--small lg:gap--medium">
     <div class="flex flex--between flex--center-y">
       <div class="flex flex--center-y gap--small">
         <span class="label label--inverted lg:label--large">{{ current_day.status_label | default: "TODAY" }}</span>
@@ -33,16 +40,16 @@
         {% endif %}
         {% if current_day.salad_bar %}
         <span class="label label--small lg:label--base label--underline">
-          🥗 {{ current_day.salad_bar }}
+          Salad Bar: {{ current_day.salad_bar }}
         </span>
         {% endif %}
       </div>
     </div>
 
-    <!-- Food Items: Left-aligned with native TRMNL classes -->
-    <div class="flex flex--col flex--left gap--tiny">
+    <!-- Food Items: Stepped up to lg:value--large on TRMNL X -->
+    <div class="flex flex--col flex--left gap--tiny lg:gap--small">
       {% for item in current_day.items %}
-      <span class="value value--small lg:value--base text--left">
+      <span class="value value--small lg:value--large text--left">
         &bull; {{ item }}
       </span>
       {% endfor %}
@@ -54,18 +61,18 @@
   <!-- Tomorrow's Lunch Section -->
   {% if tomorrow or next_day_1 %}
   {% assign next_up = tomorrow | default: next_day_1 %}
-  <div class="flex flex--col flex--stretch-x gap--tiny">
+  <div class="flex flex--col flex--stretch-x gap--tiny lg:gap--small">
     <div class="flex flex--between flex--center-y">
-      <span class="label label--underline lg:label--base">
+      <span class="label label--underline lg:label--large">
         {{ next_up.label | default: "TOMORROW'S LUNCH" }} &bull; {{ next_up.full_date }}
       </span>
       {% if next_up.salad_bar %}
-      <span class="label label--small label--gray">
+      <span class="label label--small lg:label--base label--gray">
         Salad Bar: {{ next_up.salad_bar }}
       </span>
       {% endif %}
     </div>
-    <span class="value value--small lg:value--base text--left">
+    <span class="value value--small lg:value--large text--left" data-clamp="2">
       {{ next_up.summary }}
     </span>
   </div>
@@ -75,13 +82,17 @@
 
   <!-- Footer -->
   <div class="flex flex--between flex--center-y">
-    <span class="label label--small label--gray">NYC Department of Education &bull; {{ school_year | default: "2026-2027" }}</span>
-    <span class="label label--small label--gray">Updated {{ updated_at | default: "Today" }}</span>
+    <span class="label label--small lg:label--base label--gray">NYC Department of Education &bull; {{ school_year | default: "2026-2027" }}</span>
+    <span class="label label--small lg:label--base label--gray">Updated {{ updated_at | default: "Today" }}</span>
   </div>
 
 </div>
 
 <div class="title_bar">
-  <span class="title">{{ menu_name | default: "NYC School Lunch" }}</span>
+  <svg class="image image--stroke" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
+    <path d="M10 2c1 .5 2 2 2 5"/>
+  </svg>
+  <span class="title">{{ selected_name }}</span>
   <span class="instance">NYC PS</span>
 </div>

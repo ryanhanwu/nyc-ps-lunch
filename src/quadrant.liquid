@@ -1,8 +1,16 @@
+{% assign selected_short = menu_short | default: trmnl.plugin_settings.custom_fields_values.menu_type | default: menu_type | default: "Pre-K – 8" %}
+
 <div class="layout layout--col layout--stretch-x gap--space-between lg:gap--medium portrait:gap--tiny">
   <div class="flex flex--col flex--left gap--tiny">
-    <span class="title title--small lg:title--medium">🍎 {{ menu_short | default: "Pre-K – 8" }} Lunch</span>
+    <div class="flex flex--center-y gap--small">
+      <svg class="image image--stroke" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
+        <path d="M10 2c1 .5 2 2 2 5"/>
+      </svg>
+      <span class="title title--small lg:title--medium">{{ selected_short }} Lunch</span>
+    </div>
     {% if current_day %}
-    <span class="label label--small">{{ current_day.full_date }} &bull; {{ current_day.status_label | default: "TODAY" }}</span>
+    <span class="label label--small lg:label--base">{{ current_day.full_date }} &bull; {{ current_day.status_label | default: "TODAY" }}</span>
     {% endif %}
   </div>
 
@@ -11,12 +19,12 @@
   {% if current_day %}
   <div class="flex flex--col flex--left gap--tiny">
     {% for item in current_day.items limit: 3 %}
-    <span class="value value--small text--left">&bull; {{ item }}</span>
+    <span class="value value--small lg:value--base text--left" data-clamp="1">&bull; {{ item }}</span>
     {% endfor %}
   </div>
   {% if tomorrow or next_day_1 %}
   {% assign next_up = tomorrow | default: next_day_1 %}
-  <span class="label label--gray label--small text--left">Tomorrow: {{ next_up.items | first }}</span>
+  <span class="label label--gray label--small lg:label--base text--left" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.summary }}</span>
   {% endif %}
   {% else %}
   <span class="label label--gray lg:label--base">No menu available</span>
@@ -24,6 +32,10 @@
 </div>
 
 <div class="title_bar">
-  <span class="title">{{ menu_short | default: "NYC School Lunch" }}</span>
+  <svg class="image image--stroke" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
+    <path d="M10 2c1 .5 2 2 2 5"/>
+  </svg>
+  <span class="title">{{ selected_short }}</span>
   <span class="instance">NYC PS</span>
 </div>

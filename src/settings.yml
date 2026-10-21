@@ -18,7 +18,7 @@ custom_fields:
   field_type: select
   name: School Lunch Menu
   description: Select the NYC Public Schools lunch menu to display
-  default: Pre-K - 8 Lunch Menu
+  default: pre-k - 8 lunch menu
   options:
   - Pre-K - 8 Lunch Menu
   - Pre-K - 8 Lunch Menu With Halal Option
