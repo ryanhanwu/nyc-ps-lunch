@@ -19,31 +19,29 @@ custom_fields:
   category: education,life
   name: About This Plugin
   description: |
-    Displays NYC Public Schools daily lunch menu and tomorrow's preview directly from the NYC Department of Education.
-
-    Choose from 15 official NYC DOE menus including Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, and Infant/Toddler options.
+    Displays NYC Public Schools daily lunch menu and tomorrow's preview directly from the NYC Department of Education.<br><br>Choose from 15 official NYC DOE menus including Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, and Infant/Toddler options.
   github_url: https://github.com/ryanhanwu/nyc-ps-lunch
 - keyname: menu_type
   field_type: select
   name: School Lunch Menu
   description: Select the NYC Public Schools lunch menu to display
-  default: pre-k - 8 lunch menu
+  default: "pre-k - 8 lunch menu"
   options:
-  - 'Pre-K - 8 Lunch Menu: pre-k - 8 lunch menu'
-  - 'Pre-K - 8 Lunch Menu With Halal Option: pre-k - 8 lunch menu with halal option'
-  - 'Pre-K - 8 Vegetarian Lunch Menu: pre-k - 8 vegetarian lunch menu'
-  - 'Pre-K - 8 Express Hot Lunch Menu: pre-k - 8 express hot lunch menu'
-  - 'Pre-K - 8 Express Hot With Halal: pre-k - 8 express hot lunch menu with halal option'
-  - 'Pre-K - 8 Express Cold Lunch Menu: pre-k - 8 express cold lunch menu'
-  - 'Pre-K - 8 Express Cold With Halal: pre-k - 8 express cold lunch menu with halal option'
-  - 'High School Lunch Menu: high school lunch menu'
-  - 'High School Lunch Menu With Halal: high school lunch menu with halal option'
-  - 'High School Express Hot Lunch Menu: high school express hot lunch menu'
-  - 'High School Express Hot With Halal: high school express hot lunch menu with halal option'
-  - 'High School Express Cold Lunch Menu: high school express cold lunch menu'
-  - 'Food Court Menu: food court menu'
-  - 'Food Court Menu With Halal: food court menu with halal option'
-  - 'Infant Toddler Lunch Menu: infant toddler lunch menu'
+  - Pre-K - 8 Lunch Menu: pre-k - 8 lunch menu
+  - Pre-K - 8 Lunch Menu With Halal Option: pre-k - 8 lunch menu with halal option
+  - Pre-K - 8 Vegetarian Lunch Menu: pre-k - 8 vegetarian lunch menu
+  - Pre-K - 8 Express Hot Lunch Menu: pre-k - 8 express hot lunch menu
+  - Pre-K - 8 Express Hot Lunch Menu With Halal Option: pre-k - 8 express hot lunch menu with halal option
+  - Pre-K - 8 Express Cold Lunch Menu: pre-k - 8 express cold lunch menu
+  - Pre-K - 8 Express Cold Lunch Menu With Halal Option: pre-k - 8 express cold lunch menu with halal option
+  - High School Lunch Menu: high school lunch menu
+  - High School Lunch Menu With Halal Option: high school lunch menu with halal option
+  - High School Express Hot Lunch Menu: high school express hot lunch menu
+  - High School Express Hot Lunch Menu With Halal Option: high school express hot lunch menu with halal option
+  - High School Express Cold Lunch Menu: high school express cold lunch menu
+  - Food Court Menu: food court menu
+  - Food Court Menu With Halal Option: food court menu with halal option
+  - Infant Toddler Lunch Menu: infant toddler lunch menu
 name: NYC Public School Lunch
 description: NYC Public Schools lunch menus
 refresh_interval: 60

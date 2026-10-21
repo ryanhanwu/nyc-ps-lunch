@@ -126,35 +126,57 @@ const DEFAULT_MENU: MenuMeta = NYC_MENUS[0]; // Pre-K - 8 Lunch Menu
 
 /**
  * Resolves user-selected menu parameter from TRMNL dropdown or query string.
+ *
+ * TRMNL stores a select value in parameterized form (lowercase, spaces as
+ * underscores). A quoted "Label: value" option is stored as one string, so
+ * also try each side of a colon.
  */
-function resolveMenu(param: string | null): MenuMeta {
+export function resolveMenu(param: string | null): MenuMeta {
   if (!param) return DEFAULT_MENU;
   const trimmed = param.trim();
   if (!trimmed || trimmed.includes("{{") || trimmed.includes("}}")) {
     return DEFAULT_MENU;
   }
 
+  const candidates: string[] = [];
+  const add = (value: string) => {
+    const piece = value.trim();
+    if (!piece || candidates.includes(piece)) return;
+    candidates.push(piece);
+    const spaced = piece.replace(/_/g, " ").trim();
+    if (spaced !== piece) candidates.push(spaced);
+  };
+
+  add(trimmed);
+  for (const part of trimmed.split(":")) add(part);
+
   const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const normalizedParam = normalize(trimmed);
 
-  // 1. Exact match on name, key, shortName, or filename (with or without .csv)
-  const exact = NYC_MENUS.find(
-    (m) =>
-      normalize(m.name) === normalizedParam ||
-      normalize(m.key) === normalizedParam ||
-      normalize(m.shortName) === normalizedParam ||
-      normalize(m.filename) === normalizedParam ||
-      normalize(m.filename.replace(/\.csv$/i, "")) === normalizedParam
-  );
-  if (exact) return exact;
+  const exactMatch = (normalizedParam: string) =>
+    NYC_MENUS.find(
+      (m) =>
+        normalize(m.name) === normalizedParam ||
+        normalize(m.key) === normalizedParam ||
+        normalize(m.shortName) === normalizedParam ||
+        normalize(m.filename) === normalizedParam ||
+        normalize(m.filename.replace(/\.csv$/i, "")) === normalizedParam
+    );
 
-  // 2. Partial match
-  const partial = NYC_MENUS.find(
-    (m) =>
-      normalize(m.name).includes(normalizedParam) ||
-      normalize(m.key).includes(normalizedParam)
-  );
-  if (partial) return partial;
+  for (const candidate of candidates) {
+    const exact = exactMatch(normalize(candidate));
+    if (exact) return exact;
+  }
+
+  for (const candidate of candidates) {
+    const normalizedParam = normalize(candidate);
+    if (normalizedParam.length < 6) continue;
+    const partial = NYC_MENUS.find(
+      (m) =>
+        normalize(m.name).includes(normalizedParam) ||
+        normalize(m.key).includes(normalizedParam)
+    );
+    if (partial) return partial;
+  }
 
   return DEFAULT_MENU;
 }
