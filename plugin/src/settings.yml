@@ -39,7 +39,10 @@ custom_fields:
   field_type: author_bio
   category: education,life
   name: About This Plugin
-  description: Displays NYC Public Schools daily lunch menu and tomorrow's preview directly from the NYC Department of Education.<br><br>Choose from 15 official NYC DOE menus including Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, and Infant/Toddler options.
+  description: |
+    Displays NYC Public Schools daily lunch menu and tomorrow's preview directly from the NYC Department of Education.
+
+    Choose from 15 official NYC DOE menus including Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, and Infant/Toddler options.
   github_url: https://github.com/ryanhanwu/nyc-ps-lunch
 name: NYC Public School Lunch
 description: NYC Public Schools lunch menus
