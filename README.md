@@ -2,7 +2,7 @@
 
 A [TRMNL](https://usetrmnl.com) plugin that displays the official New York City Public Schools (NYC DOE) lunch menu for today with a clean, glanceable preview for tomorrow — refreshed automatically on every screen update.
 
-Designed to look like an appetizing cafeteria blackboard that kids and parents can easily read from across the kitchen. Defaults to **Pre-K - 8 Lunch Menu**, with a dropdown in settings supporting all 15 official NYC DOE lunch menus (Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, and Infant/Toddler).
+Designed to look like an appetizing cafeteria blackboard that kids and parents can easily read from across the kitchen. Defaults to **Pre-K - 8 Lunch Menu**, with a dropdown in settings supporting all 19 official NYC DOE lunch menus (Pre-K – 8, High School, Express Hot/Cold, Vegetarian, Halal, Food Court, Puree, Saturday, and Infant/Toddler).
 
 [![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ryanhanwu&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/ryanhanwu)
 
@@ -48,7 +48,7 @@ TRMNL polls → https://trmnl-nyc-ps-lunch.<subdomain>.workers.dev/lunch?menu={{
 
 ---
 
-## Supported Menus (15 Official NYC DOE Menus)
+## Supported Menus (19 Official NYC DOE Menus)
 
 | Menu Name | CSV Slug |
 |---|---|
@@ -64,9 +64,13 @@ TRMNL polls → https://trmnl-nyc-ps-lunch.<subdomain>.workers.dev/lunch?menu={{
 | High School Express Hot Lunch Menu | `high-school-express-hot-lunch-menu.csv` |
 | High School Express Hot Lunch Menu With Halal Option | `high-school-express-hot-lunch-menu-with-halal-option.csv` |
 | High School Express Cold Lunch Menu | `High-School-Express-Cold-Lunch-Menu.csv` |
+| High School Express Cold Lunch Menu With Halal Option | `high-school-express-cold-lunch-menu-with-halal-option.csv` |
 | Food Court Menu | `food-court-menu.csv` |
 | Food Court Menu With Halal Option | `food-court-menu-with-halal-option.csv` |
 | Infant Toddler Lunch Menu | `Infant-Toddler-Lunch-Menu.csv` |
+| Puree Lunch Menu | `Puree-Lunch-Menu.csv` |
+| Saturday Cold Lunch Menu | `saturday-cold-lunch-menu.csv` |
+| Saturday Hot Lunch Menu | `saturday-hot-lunch-menu.csv` |
 
 ---
 

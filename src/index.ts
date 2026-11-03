@@ -103,6 +103,12 @@ export const NYC_MENUS: MenuMeta[] = [
     filename: "High-School-Express-Cold-Lunch-Menu.csv",
   },
   {
+    key: "high-school-express-cold-halal",
+    name: "High School Express Cold Lunch Menu With Halal Option",
+    shortName: "HS Express Cold (Halal)",
+    filename: "high-school-express-cold-lunch-menu-with-halal-option.csv",
+  },
+  {
     key: "food-court",
     name: "Food Court Menu",
     shortName: "Food Court",
@@ -119,6 +125,24 @@ export const NYC_MENUS: MenuMeta[] = [
     name: "Infant Toddler Lunch Menu",
     shortName: "Infant & Toddler",
     filename: "Infant-Toddler-Lunch-Menu.csv",
+  },
+  {
+    key: "puree-lunch",
+    name: "Puree Lunch Menu",
+    shortName: "Puree",
+    filename: "Puree-Lunch-Menu.csv",
+  },
+  {
+    key: "saturday-cold",
+    name: "Saturday Cold Lunch Menu",
+    shortName: "Saturday Cold",
+    filename: "saturday-cold-lunch-menu.csv",
+  },
+  {
+    key: "saturday-hot",
+    name: "Saturday Hot Lunch Menu",
+    shortName: "Saturday Hot",
+    filename: "saturday-hot-lunch-menu.csv",
   },
 ];
 
