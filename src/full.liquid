@@ -19,16 +19,16 @@
 
   <!-- Today's Lunch Header -->
   <div class="flex flex--between flex--center-y">
-    <div class="flex flex--center-y gap--small">
-      <span class="label label--inverted lg:label--large">{{ current_day.status_label | default: "TODAY" }}</span>
-      <span class="value value--base lg:value--xlarge portrait:value--base" data-fit-value="true"><strong>{{ current_day.day_name | default: current_day.day_short }}, {{ current_day.date }}</strong></span>
+    <div class="portrait:flex--col portrait:flex--left portrait:gap--small">
+      <span class="no-shrink label label--inverted lg:label--large">{{ current_day.status_label | default: "TODAY" }}</span>
+      <span class="value value value--base lg:value--large lg:portrait:value--base" data-fit-value="true"><strong>{{ current_day.day_name | default: current_day.day_short }}, {{ current_day.date }}</strong></span>
     </div>
     <div class="flex flex--center-y gap--small">
       {% if current_day.note %}
       <span class="label label--inverted label--small lg:label--base">{{ current_day.note }}</span>
       {% endif %}
       {% if current_day.salad_bar %}
-      <span class="label label--small lg:label--large label--underline" data-clamp="1">
+      <span class="label label--small lg:label--large label--underline" data-clamp="1" data-clamp-lg="2">
         Salad Bar: {{ current_day.salad_bar }}
       </span>
       {% endif %}
@@ -43,7 +43,7 @@
         <div class="item">
           <div class="meta"></div>
           <div class="content">
-            <span class="value value--base lg:value--xlarge portrait:value--small lg:portrait:value--base" data-clamp="1">&bull; {{ item }}</span>
+            <span class="value value--base lg:value--large portrait:value--small lg:portrait:value--base" data-clamp="1">&bull; {{ item }}</span>
           </div>
         </div>
         {% endfor %}
