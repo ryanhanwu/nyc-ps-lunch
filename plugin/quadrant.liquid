@@ -18,7 +18,7 @@
       <div class="item">
         <div class="meta"></div>
         <div class="content">
-          <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+          <span class="value value--small lg:value--base" data-clamp="1" data-clamp-lg-portrait="2">&bull; {{ item }}</span>
         </div>
       </div>
       {% endfor %}
@@ -29,12 +29,12 @@
   {% endif %}
   {% if next_up %}
   {% if next_up.items and next_up.items.size > 0 %}
-  <span class="label label--gray 1bit:text--black label--small lg:label--base" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.items | slice: 0, 2 | join: ", " }}</span>
+  <span class="label label--gray 1bit:text--black label--small lg:label--base" data-clamp="2" data-clamp-portrait="1" data-clamp-lg-portrait="2">Tomorrow: {{ next_up.items | slice: 0, 2 | join: ", " }}</span>
   {% elsif next_up.summary and next_up.summary != "" %}
-  <span class="label label--gray 1bit:text--black label--small lg:label--base" data-clamp="2" data-clamp-portrait="1">Tomorrow: {{ next_up.summary }}</span>
+  <span class="label label--gray 1bit:text--black label--small lg:label--base" data-clamp="2" data-clamp-portrait="1" data-clamp-lg-portrait="2">Tomorrow: {{ next_up.summary }}</span>
   {% endif %}
   {% endif %}
   {% endif %}
 </div>
 
-{% render 'title_bar', svg_logo: svg_logo, title: selected_short, trmnl: trmnl %}
+{% render 'title_bar', svg_logo: svg_logo, title: selected_short, trmnl: trmnl, updated_at: updated_at %}

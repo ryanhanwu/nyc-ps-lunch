@@ -17,7 +17,7 @@
       <div class="item">
         <div class="meta"></div>
         <div class="content">
-          <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+          <span class="value value--small lg:value--base" data-clamp="1" data-clamp-lg-portrait="3">&bull; {{ item }}</span>
         </div>
       </div>
       {% endfor %}
@@ -41,7 +41,7 @@
       <div class="item">
         <div class="meta"></div>
         <div class="content">
-          <span class="value value--small lg:value--base" data-clamp="1">&bull; {{ item }}</span>
+          <span class="value value--small lg:value--base" data-clamp="1" data-clamp-lg-portrait="3">&bull; {{ item }}</span>
         </div>
       </div>
       {% endfor %}
@@ -54,4 +54,4 @@
   {% endif %}
 </div>
 
-{% render 'title_bar', svg_logo: svg_logo, title: selected_short, trmnl: trmnl %}
+{% render 'title_bar', svg_logo: svg_logo, title: selected_short, trmnl: trmnl, updated_at: updated_at %}
