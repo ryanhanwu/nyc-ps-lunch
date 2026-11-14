@@ -59,11 +59,6 @@ const MENU_MAP = {
     short: "HS Express Cold",
     halal: false,
   },
-  "high school express cold lunch menu with halal option": {
-    name: "High School Express Cold (Halal)",
-    short: "HS Express Cold (Halal)",
-    halal: true,
-  },
   "food court menu": {
     name: "Food Court Menu",
     short: "Food Court",
@@ -77,21 +72,6 @@ const MENU_MAP = {
   "infant toddler lunch menu": {
     name: "Infant Toddler Lunch Menu",
     short: "Infant & Toddler",
-    halal: false,
-  },
-  "puree lunch menu": {
-    name: "Puree Lunch Menu",
-    short: "Puree",
-    halal: false,
-  },
-  "saturday cold lunch menu": {
-    name: "Saturday Cold Lunch Menu",
-    short: "Saturday Cold",
-    halal: false,
-  },
-  "saturday hot lunch menu": {
-    name: "Saturday Hot Lunch Menu",
-    short: "Saturday Hot",
     halal: false,
   },
 };
